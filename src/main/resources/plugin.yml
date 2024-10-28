@@ -1,0 +1,10 @@
+name: SweetBiomeAction
+version: '${version}'
+main: top.mrxiaom.sweet.biomeaction.SweetBiomeAction
+api-version: 1.13
+softdepend: [ PlaceholderAPI ]
+authors: [ MrXiaoM ]
+commands:
+  sweetbiomeaction:
+    description: 'The main command of SweetBiomeAction'
+    aliases: [ sba ]
