@@ -3,6 +3,7 @@ package top.mrxiaom.sweet.biomeaction;
 import org.jetbrains.annotations.NotNull;
 import top.mrxiaom.pluginbase.BukkitPlugin;
 import top.mrxiaom.pluginbase.EconomyHolder;
+import top.mrxiaom.sweet.biomeaction.nms.MCVersion;
 import top.mrxiaom.sweet.biomeaction.nms.NMS;
 
 public class SweetBiomeAction extends BukkitPlugin {
@@ -24,7 +25,7 @@ public class SweetBiomeAction extends BukkitPlugin {
     @Override
     protected void beforeLoad() {
         if (!NMS.init(getLogger())) {
-            throw new IllegalStateException("插件不支持当前版本");
+            getLogger().warning("插件不支持当前版本 " + MCVersion.getVersion().name() + "，将不会有自定义生物群系支持");
         }
     }
 
