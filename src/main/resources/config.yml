@@ -15,6 +15,13 @@ biomes:
       # 冷却时间 (秒)
       cooldown: 60
       # 执行操作
+      # [player]玩家执行
+      # [console]控制台执行
+      # [message]聊天消息，支持 mini message
+      # [actionbar]动作消息，支持 mini message
+      # [title]标题<subtitle>副标题，支持 mini message
+      # [delay]延时多少tick再执行下一条
+      # 均支持 PAPI 变量
       commands:
         - '[title]&e平原<subtitle>&f经典地形'
     ocean:
