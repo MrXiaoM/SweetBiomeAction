@@ -1,0 +1,32 @@
+# 不触发生物群系命令的世界（不分大小写）
+blacklist-worlds:
+  - world1
+
+title-time:
+  fade-in: 10
+  stay: 30
+  fade-out: 10
+
+biomes:
+  # 生物群系命名空间
+  minecraft:
+    # 生物群系名，这里代表 minecraft:plain，下同
+    plain:
+      # 冷却时间 (秒)
+      cooldown: 60
+      # 执行操作
+      commands:
+        - '[title]&e平原<subtitle>&f经典地形'
+    ocean:
+      cooldown: 60
+      commands:
+        - '[title]&b海洋<subtitle>&f一望无际'
+
+  # 仅 1.13 及以上的最新子版本 (1.13.2, 1.14.4, 1.15.2 等等，但 1.20 是例外，1.20-1.20.6 都行)
+  # 支持使用非原版(minecraft)命名空间
+  overworld:
+    # 用 iris 默认包里面的一个生物群系 overworld:curseforest 作示例
+    curseforest:
+      cooldown: 60
+      commands:
+        - '[title]&c诅咒森林<subtitle>&f无声的尖叫，听见了吗?'
