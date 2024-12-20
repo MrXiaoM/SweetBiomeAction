@@ -61,7 +61,7 @@ dependencies {
     implementation("net.kyori:adventure-api:4.17.0")
     implementation("net.kyori:adventure-platform-bukkit:4.3.4")
     implementation("net.kyori:adventure-text-minimessage:4.17.0")
-    implementation("com.github.MrXiaoM:PluginBase:1+")
+    implementation("top.mrxiaom:PluginBase:1+")
     implementation(project(":nms"))
 }
 tasks {
@@ -75,6 +75,18 @@ tasks {
         ).forEach { (original, target) ->
             relocate(original, "$shadowGroup.$target")
         }
+        listOf(
+            "top/mrxiaom/pluginbase/func/AbstractGui*",
+            "top/mrxiaom/pluginbase/func/gui/*",
+            "top/mrxiaom/pluginbase/utils/IA*",
+            "top/mrxiaom/pluginbase/utils/ItemStackUtil*",
+            "top/mrxiaom/pluginbase/func/GuiManager*",
+            "top/mrxiaom/pluginbase/gui/*",
+            "top/mrxiaom/pluginbase/func/LanguageManager*",
+            "top/mrxiaom/pluginbase/func/language/*",
+            "top/mrxiaom/pluginbase/utils/AdventureItemStack*",
+            "top/mrxiaom/pluginbase/utils/Bytes*",
+        ).forEach(this::exclude)
     }
     build {
         dependsOn(shadowJar)
