@@ -2,7 +2,6 @@ package top.mrxiaom.sweet.biomeaction.func;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -10,6 +9,7 @@ import top.mrxiaom.pluginbase.func.AutoRegister;
 import top.mrxiaom.pluginbase.utils.Util;
 import top.mrxiaom.sweet.biomeaction.SweetBiomeAction;
 import top.mrxiaom.sweet.biomeaction.nms.NMS;
+import top.mrxiaom.sweet.biomeaction.utils.Key;
 
 @AutoRegister(requirePlugins = "PlaceholderAPI")
 public class Placeholders extends AbstractModule{
@@ -65,9 +65,9 @@ public class Placeholders extends AbstractModule{
                 }
                 loc = new Location(player.getWorld(), x, y, z);
             }
-            NamespacedKey biomeType = NMS.getRealBiomeType(player.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
+            Key biomeType = NMS.getRealBiomeType(player.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
             if (biomeType == null) {
-                return params.length() >= 8 ? params.substring(8) : "";
+                return "";
             } else {
                 return biomeType.toString();
             }

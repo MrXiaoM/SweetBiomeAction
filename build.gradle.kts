@@ -62,6 +62,7 @@ dependencies {
     implementation("net.kyori:adventure-text-minimessage:4.17.0")
     implementation("top.mrxiaom:PluginBase:1.3.5")
     implementation(project(":nms"))
+    implementation(project(":nms:shared"))
 }
 tasks {
     shadowJar {

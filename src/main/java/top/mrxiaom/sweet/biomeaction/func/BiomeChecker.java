@@ -2,7 +2,6 @@ package top.mrxiaom.sweet.biomeaction.func;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
@@ -10,17 +9,18 @@ import top.mrxiaom.pluginbase.func.AutoRegister;
 import top.mrxiaom.sweet.biomeaction.Actions;
 import top.mrxiaom.sweet.biomeaction.SweetBiomeAction;
 import top.mrxiaom.sweet.biomeaction.nms.NMS;
+import top.mrxiaom.sweet.biomeaction.utils.Key;
 
 import java.util.*;
 
 @AutoRegister
 public class BiomeChecker extends AbstractModule {
     public static class Checker {
-        public final NamespacedKey biome;
+        public final Key biome;
         public final long cooldownSecond;
         public final List<String> commands;
 
-        Checker(NamespacedKey biome, long cooldownSecond, List<String> commands) {
+        Checker(Key biome, long cooldownSecond, List<String> commands) {
             this.biome = biome;
             this.cooldownSecond = cooldownSecond;
             this.commands = commands;
@@ -28,8 +28,8 @@ public class BiomeChecker extends AbstractModule {
     }
     Set<String> blacklistWorlds = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
     Map<String, Long> cooldown = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-    Map<UUID, NamespacedKey> lastBiome = new HashMap<>();
-    Map<NamespacedKey, Checker> checkerMap = new TreeMap<>();
+    Map<UUID, Key> lastBiome = new HashMap<>();
+    Map<Key, Checker> checkerMap = new TreeMap<>();
     public BiomeChecker(SweetBiomeAction plugin) {
         super(plugin);
         Bukkit.getScheduler().runTaskTimer(plugin, this::everySecond, 20L, 20L);
@@ -54,7 +54,7 @@ public class BiomeChecker extends AbstractModule {
         if (section != null) for (String namespace : section.getKeys(false)) {
             ConfigurationSection section1 = section.getConfigurationSection(namespace);
             if (section1 != null) for (String value : section1.getKeys(false)) {
-                NamespacedKey biome = new NamespacedKey(namespace, value);
+                Key biome = new Key(namespace, value);
                 ConfigurationSection section2 = section1.getConfigurationSection(value + ".requirements");
                 if (section2 != null) for (String key : section2.getKeys(false)) {
                     // TODO: 有空再写，命令触发条件 requirements
@@ -69,8 +69,8 @@ public class BiomeChecker extends AbstractModule {
     public void check(Player player) {
         Location loc = player.getLocation();
         UUID uuid = player.getUniqueId();
-        NamespacedKey fromBiome = lastBiome.get(uuid);
-        NamespacedKey toBiome = NMS.getRealBiomeType(player.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
+        Key fromBiome = lastBiome.get(uuid);
+        Key toBiome = NMS.getRealBiomeType(player.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
         if (toBiome != null && !toBiome.equals(fromBiome)) {
             lastBiome.put(uuid, toBiome);
             Checker checker = checkerMap.get(toBiome);

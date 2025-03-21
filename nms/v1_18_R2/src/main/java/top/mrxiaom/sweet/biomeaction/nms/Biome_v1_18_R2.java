@@ -4,14 +4,13 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.IRegistry;
 import net.minecraft.resources.MinecraftKey;
 import net.minecraft.world.level.biome.BiomeBase;
-import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_18_R2.CraftRegionAccessor;
-import org.bukkit.craftbukkit.v1_18_R2.util.CraftNamespacedKey;
+import top.mrxiaom.sweet.biomeaction.utils.Key;
 
 public class Biome_v1_18_R2 implements IBiome {
     @Override
-    public NamespacedKey getRealBiomeType(World world, int x, int y, int z) {
+    public Key getRealBiomeType(World world, int x, int y, int z) {
 
         IRegistry<BiomeBase> registry = ((CraftRegionAccessor) world).getHandle().s().b(IRegistry.aP);
         Holder<BiomeBase> biomeHolder = ((CraftRegionAccessor) world).getHandle().getNoiseBiome(x >> 2, y >> 2, z >> 2);
@@ -19,6 +18,6 @@ public class Biome_v1_18_R2 implements IBiome {
         if (biome == null) return null;
         MinecraftKey key = registry.b(biome);
         if (key == null) return null;
-        return CraftNamespacedKey.fromMinecraft(key);
+        return new Key(key.b(), key.a());
     }
 }

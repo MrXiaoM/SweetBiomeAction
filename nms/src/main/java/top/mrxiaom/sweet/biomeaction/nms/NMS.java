@@ -3,6 +3,7 @@ package top.mrxiaom.sweet.biomeaction.nms;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
+import top.mrxiaom.sweet.biomeaction.utils.Key;
 
 import java.util.logging.Logger;
 
@@ -60,9 +61,9 @@ public class NMS {
         return false;
     }
 
-    public static NamespacedKey getRealBiomeType(World world, int x, int y, int z) {
+    public static Key getRealBiomeType(World world, int x, int y, int z) {
         if (biome == null) {
-            return new NamespacedKey("minecraft", world.getBiome(x, y, z).name());
+            return new Key("minecraft", world.getBiome(x, y, z).name());
         }
         return biome.getRealBiomeType(world, x, y, z);
     }
