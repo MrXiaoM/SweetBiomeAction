@@ -1,6 +1,6 @@
 subprojects {
     repositories {
-        maven("https://maven.fastmirror.net/repositories/minecraft/") {
+        maven("https://repo.papermc.io/repository/maven-public/") {
             mavenContent {
                 includeModule("com.mojang", "datafixerupper")
             }
