@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.mrxiaom.pluginbase.func.AutoRegister;
+import top.mrxiaom.pluginbase.utils.Util;
 import top.mrxiaom.sweet.biomeaction.SweetBiomeAction;
 import top.mrxiaom.sweet.biomeaction.nms.NMS;
 
@@ -47,7 +48,23 @@ public class Placeholders extends AbstractModule{
 
     private String onPlaceholderRequest(Player player, String params) {
         if (params.startsWith("current") && (params.length() == 7 || params.substring(7).startsWith("_"))) {
-            Location loc = player.getLocation();
+            String str = params.substring(7);
+            Location loc;
+            if (str.length() == 7) {
+                loc = player.getLocation();
+            } else {
+                String[] split = str.split("_");
+                if (split.length != 3) {
+                    return "";
+                }
+                Integer x = Util.parseInt(split[0]).orElse(null);
+                Integer y = Util.parseInt(split[1]).orElse(null);
+                Integer z = Util.parseInt(split[2]).orElse(null);
+                if (x == null || y == null || z == null) {
+                    return "";
+                }
+                loc = new Location(player.getWorld(), x, y, z);
+            }
             NamespacedKey biomeType = NMS.getRealBiomeType(player.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
             if (biomeType == null) {
                 return params.length() >= 8 ? params.substring(8) : "";
