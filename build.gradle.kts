@@ -61,7 +61,7 @@ dependencies {
     implementation("net.kyori:adventure-api:4.17.0")
     implementation("net.kyori:adventure-platform-bukkit:4.3.4")
     implementation("net.kyori:adventure-text-minimessage:4.17.0")
-    implementation("top.mrxiaom:PluginBase:1+")
+    implementation("top.mrxiaom:PluginBase:1.3.5")
     implementation(project(":nms"))
 }
 tasks {
