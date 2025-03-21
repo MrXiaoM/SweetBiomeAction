@@ -13,7 +13,7 @@ import org.bukkit.craftbukkit.v1_21_R2.util.CraftNamespacedKey;
 public class Biome_v1_21_R2 implements IBiome {
     @Override
     public NamespacedKey getRealBiomeType(World world, int x, int y, int z) {
-        IRegistry<BiomeBase> registry = ((CraftRegionAccessor) world).getHandle().H_().d(Registries.aF);
+        IRegistry<BiomeBase> registry = ((CraftRegionAccessor) world).getHandle().K_().e(Registries.aI);
         Holder<BiomeBase> biomeHolder = ((CraftRegionAccessor) world).getHandle().getNoiseBiome(x >> 2, y >> 2, z >> 2);
         BiomeBase biome = biomeHolder.a();
         if (biome == null) return null;
