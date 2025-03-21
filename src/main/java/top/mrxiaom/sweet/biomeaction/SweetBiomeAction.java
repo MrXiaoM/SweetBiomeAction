@@ -3,6 +3,7 @@ package top.mrxiaom.sweet.biomeaction;
 import org.jetbrains.annotations.NotNull;
 import top.mrxiaom.pluginbase.BukkitPlugin;
 import top.mrxiaom.pluginbase.EconomyHolder;
+import top.mrxiaom.pluginbase.utils.PAPI;
 import top.mrxiaom.sweet.biomeaction.nms.MCVersion;
 import top.mrxiaom.sweet.biomeaction.nms.NMS;
 
@@ -31,6 +32,9 @@ public class SweetBiomeAction extends BukkitPlugin {
 
     @Override
     protected void afterEnable() {
+        if (PAPI.isEnabled()) {
+            new Placeholders(this).register();
+        }
         getLogger().info("SweetBiomeAction 加载完毕");
     }
 }
