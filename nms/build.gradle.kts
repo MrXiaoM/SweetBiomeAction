@@ -1,6 +1,10 @@
 subprojects {
     repositories {
-        maven("https://repo.codemc.io/repository/nms/")
+        maven("https://maven.fastmirror.net/repositories/minecraft/") {
+            mavenContent {
+                includeModule("com.mojang", "datafixerupper")
+            }
+        }
     }
 }
 
