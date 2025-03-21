@@ -32,9 +32,6 @@ public class SweetBiomeAction extends BukkitPlugin {
 
     @Override
     protected void afterEnable() {
-        if (PAPI.isEnabled()) {
-            new Placeholders(this).register();
-        }
         getLogger().info("SweetBiomeAction 加载完毕");
     }
 }
