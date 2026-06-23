@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import top.mrxiaom.pluginbase.actions.ActionProviders;
 import top.mrxiaom.pluginbase.api.IAction;
 import top.mrxiaom.pluginbase.func.AutoRegister;
-import top.mrxiaom.sweet.biomeaction.Actions;
 import top.mrxiaom.sweet.biomeaction.SweetBiomeAction;
 import top.mrxiaom.sweet.biomeaction.nms.NMS;
 import top.mrxiaom.sweet.biomeaction.utils.Key;
@@ -46,9 +45,6 @@ public class BiomeChecker extends AbstractModule {
     @Override
     public void reloadConfig(MemoryConfiguration config) {
         super.reloadConfig(config);
-        Actions.titleFadeIn = config.getInt("title-time.fade-in", 10);
-        Actions.titleStay = config.getInt("title-time.stay", 30);
-        Actions.titleFadeOut = config.getInt("title-time.fade-out", 10);
         blacklistWorlds.clear();
         blacklistWorlds.addAll(config.getStringList("blacklist-worlds"));
         checkerMap.clear();
