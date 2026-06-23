@@ -5,6 +5,8 @@ import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
+import top.mrxiaom.pluginbase.actions.ActionProviders;
+import top.mrxiaom.pluginbase.api.IAction;
 import top.mrxiaom.pluginbase.func.AutoRegister;
 import top.mrxiaom.sweet.biomeaction.Actions;
 import top.mrxiaom.sweet.biomeaction.SweetBiomeAction;
@@ -18,9 +20,9 @@ public class BiomeChecker extends AbstractModule {
     public static class Checker {
         public final Key biome;
         public final long cooldownSecond;
-        public final List<String> commands;
+        public final List<IAction> commands;
 
-        Checker(Key biome, long cooldownSecond, List<String> commands) {
+        Checker(Key biome, long cooldownSecond, List<IAction> commands) {
             this.biome = biome;
             this.cooldownSecond = cooldownSecond;
             this.commands = commands;
@@ -60,7 +62,7 @@ public class BiomeChecker extends AbstractModule {
                     // TODO: 有空再写，命令触发条件 requirements
                 }
                 long cooldownSecond = section1.getLong(value + ".cooldown");
-                List<String> commands = section1.getStringList(value + ".commands");
+                List<IAction> commands = ActionProviders.loadActions(section1, value + ".commands");
                 checkerMap.put(biome, new Checker(biome, cooldownSecond, commands));
             }
         }
@@ -82,7 +84,7 @@ public class BiomeChecker extends AbstractModule {
                 return;
             }
             cooldown.put(key, now + checker.cooldownSecond * 1000L);
-            Actions.execute(player, checker.commands);
+            ActionProviders.run(plugin, player, checker.commands);
         }
     }
 }

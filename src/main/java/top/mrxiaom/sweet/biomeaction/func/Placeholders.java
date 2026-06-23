@@ -12,7 +12,7 @@ import top.mrxiaom.sweet.biomeaction.nms.NMS;
 import top.mrxiaom.sweet.biomeaction.utils.Key;
 
 @AutoRegister(requirePlugins = "PlaceholderAPI")
-public class Placeholders extends AbstractModule{
+public class Placeholders extends AbstractModule {
     public class Internal extends PlaceholderExpansion {
         @Override
         public boolean register() {
@@ -32,6 +32,11 @@ public class Placeholders extends AbstractModule{
         @Override
         public @NotNull String getVersion() {
             return plugin.getDescription().getVersion();
+        }
+
+        @Override
+        public boolean persist() {
+            return true;
         }
 
         @Override
