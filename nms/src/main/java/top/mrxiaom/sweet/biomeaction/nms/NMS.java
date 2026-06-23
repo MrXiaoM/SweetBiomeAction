@@ -15,6 +15,9 @@ public class NMS {
         MCVersion version = MCVersion.getVersion();
 
         switch (version) {
+            case MC1_21_R7:
+                biome = new Biome_v1_21_R7();
+                return true;
             case MC1_21_R3:
                 biome = new Biome_v1_21_R3();
                 return true;

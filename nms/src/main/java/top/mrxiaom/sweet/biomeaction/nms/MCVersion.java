@@ -40,7 +40,8 @@ public enum MCVersion {
     MC1_20_R4(1204, true),
     MC1_21_R1(1211, true),
     MC1_21_R2(1212, true),
-    MC1_21_R3(1213, true);
+    MC1_21_R3(1213, true),
+    MC1_21_R7(1217, true);
 
     private static MCVersion version;
     private static Logger logger = Logger.getLogger("NBTAPI");
@@ -60,6 +61,7 @@ public enum MCVersion {
             this.put("1.21.2", MCVersion.MC1_21_R2);
             this.put("1.21.3", MCVersion.MC1_21_R2);
             this.put("1.21.4", MCVersion.MC1_21_R3);
+            this.put("1.21.11", MCVersion.MC1_21_R7);
         }
     };
 

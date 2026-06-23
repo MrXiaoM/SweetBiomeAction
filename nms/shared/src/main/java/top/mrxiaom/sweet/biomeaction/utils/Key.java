@@ -1,8 +1,11 @@
 package top.mrxiaom.sweet.biomeaction.utils;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Key {
+public class Key implements Comparable<Key> {
     private String namespace;
     private String key;
 
@@ -35,6 +38,11 @@ public class Key {
     @Override
     public int hashCode() {
         return Objects.hash(namespace, key);
+    }
+
+    @Override
+    public int compareTo(@NotNull Key o) {
+        return toString().compareTo(o.toString());
     }
 
     public static boolean isValidPath(String path) {
