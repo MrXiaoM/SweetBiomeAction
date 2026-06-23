@@ -41,8 +41,10 @@ public enum MCVersion {
     MC1_21_R1(1211, true),
     MC1_21_R2(1212, true),
     MC1_21_R3(1213, true),
-    MC1_21_R7(1217, true);
+    MC1_21_R7(1217, true),
+    MC26_1(260100, true),
 
+    ;
     private static MCVersion version;
     private static Logger logger = Logger.getLogger("NBTAPI");
     private final int versionId;
@@ -62,6 +64,8 @@ public enum MCVersion {
             this.put("1.21.3", MCVersion.MC1_21_R2);
             this.put("1.21.4", MCVersion.MC1_21_R3);
             this.put("1.21.11", MCVersion.MC1_21_R7);
+            this.put("26.1", MCVersion.MC26_1);
+            this.put("26.1.", MCVersion.MC26_1);
         }
     };
 
@@ -110,8 +114,21 @@ public enum MCVersion {
                 logger.info("发现 Minecraft 版本: " + ver + "! 尝试寻找 NMS 支持");
                 version = valueOf(ver.replace("v", "MC"));
             } catch (Exception var1) {
-                logger.info("发现 Minecraft 版本: " + Bukkit.getServer().getBukkitVersion().split("-")[0] + "! 尝试寻找 NMS 支持");
-                version = (MCVersion)VERSION_TO_REVISION.getOrDefault(Bukkit.getServer().getBukkitVersion().split("-")[0], UNKNOWN);
+                String mcVersion = Bukkit.getServer().getBukkitVersion().split("-")[0];
+                logger.info("发现 Minecraft 版本: " + mcVersion + "! 尝试寻找 NMS 支持");
+                if (VERSION_TO_REVISION.containsKey(mcVersion)) {
+                    version = VERSION_TO_REVISION.get(mcVersion);
+                } else {
+                    for (String s : VERSION_TO_REVISION.keySet()) {
+                        if (s.endsWith(".") && mcVersion.startsWith(s)) {
+                            version = VERSION_TO_REVISION.get(s);
+                            break;
+                        }
+                    }
+                }
+                if (version == null) {
+                    version = UNKNOWN;
+                }
             }
             return version;
         }
