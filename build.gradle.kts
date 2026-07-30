@@ -60,7 +60,7 @@ dependencies {
     base.collectPluginHolders()
 
     implementation("com.github.technicallycoded:FoliaLib:0.4.4") { isTransitive = false }
-    implementation(base.depend.nbtapi)
+    implementation("de.tr7zw:item-nbt-api:2.16.0")
     for (artifact in pluginBaseModules) {
         implementation(artifact)
     }
