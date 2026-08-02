@@ -6,7 +6,6 @@ import top.mrxiaom.pluginbase.economy.EnumEconomy;
 import top.mrxiaom.pluginbase.resolver.DefaultLibraryResolver;
 import top.mrxiaom.pluginbase.utils.ClassLoaderWrapper;
 import top.mrxiaom.pluginbase.utils.ConfigUtils;
-import top.mrxiaom.pluginbase.utils.scheduler.FoliaLibScheduler;
 import top.mrxiaom.sweet.biomeaction.nms.MCVersion;
 import top.mrxiaom.sweet.biomeaction.nms.NMS;
 
@@ -28,7 +27,6 @@ public class SweetBiomeAction extends BukkitPlugin {
                 .economy(EnumEconomy.NONE)
                 .scanIgnore("top.mrxiaom.sweet.biomeaction.libs")
         );
-        scheduler = new FoliaLibScheduler(this);
 
         try {
             //noinspection ResultOfMethodCallIgnored

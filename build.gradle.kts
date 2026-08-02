@@ -9,12 +9,12 @@ plugins {
 
 buildscript {
     repositories.mavenCentral()
-    dependencies.classpath("top.mrxiaom:LibrariesResolver-Gradle:1.7.32")
+    dependencies.classpath("top.mrxiaom:LibrariesResolver-Gradle:1.7.33")
 }
 val base = LibraryHelper(project)
 
 val targetJavaVersion = 8
-val pluginBaseModules = base.modules.run { listOf(library, paper, actions, l10n) }
+val pluginBaseModules = base.modules.run { listOf(library, paper, actions, l10n, misc) }
 val shadowGroup = "top.mrxiaom.sweet.biomeaction.libs"
 allprojects {
     group = "top.mrxiaom.sweet.biomeaction"
@@ -59,7 +59,6 @@ dependencies {
     base.library(LibraryHelper.adventure("4.25.0"))
     base.collectPluginHolders()
 
-    implementation("com.github.technicallycoded:FoliaLib:0.4.4") { isTransitive = false }
     implementation("de.tr7zw:item-nbt-api:2.16.0")
     for (artifact in pluginBaseModules) {
         implementation(artifact)
@@ -87,7 +86,6 @@ tasks {
         configurations.add(project.configurations.runtimeClasspath.get())
         mapOf(
             "top.mrxiaom.pluginbase" to "base",
-            "com.tcoded.folialib" to "folialib",
         ).forEach { (original, target) ->
             relocate(original, "$shadowGroup.$target")
         }
