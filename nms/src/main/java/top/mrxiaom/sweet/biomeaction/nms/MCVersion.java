@@ -43,6 +43,7 @@ public enum MCVersion {
     MC1_21_R3(1213, true),
     MC1_21_R7(1217, true),
     MC26_1(260100, true),
+    MC26_2(260200, true),
 
     ;
     private static MCVersion version;
@@ -66,6 +67,8 @@ public enum MCVersion {
             this.put("1.21.11", MCVersion.MC1_21_R7);
             this.put("26.1", MCVersion.MC26_1);
             this.put("26.1.", MCVersion.MC26_1);
+            this.put("26.2", MCVersion.MC26_2);
+            this.put("26.2.", MCVersion.MC26_2);
         }
     };
 
